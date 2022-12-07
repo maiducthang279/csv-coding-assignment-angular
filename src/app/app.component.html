@@ -1,8 +1,8 @@
-<h2>Tasks</h2>
-
-<ul>
-  <li *ngFor="let t of tasks|async">
-    Task: {{t.id}}, {{t.description}}
-  </li>
-</ul>
-
+<div class="main_container">
+  <h2>
+    <a routerLink="/">
+      <mat-icon aria-label="Home icon">home</mat-icon>
+    </a>
+  </h2>
+  <router-outlet></router-outlet>
+</div>

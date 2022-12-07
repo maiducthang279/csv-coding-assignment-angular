@@ -1,0 +1,33 @@
+<h2>{{ isEditForm ? 'Edit task' : 'Create new task' }}</h2>
+<form [formGroup]="taskForm" (ngSubmit)="submit()">
+  <mat-dialog-content>
+    <div class="task_form_container">
+      <mat-form-field appearance="fill">
+        <mat-label>Description</mat-label>
+        <input matInput formControlName="description" />
+      </mat-form-field>
+      <mat-form-field appearance="fill">
+        <mat-label>Assignee</mat-label>
+        <mat-select formControlName="assigneeId">
+          <mat-option value="">Unassigned</mat-option>
+          <ng-container *ngIf="users$ | async as users">
+            <mat-option *ngFor="let user of users" [value]="user.id">{{
+              user.name
+            }}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions>
+    <button
+      mat-raised-button
+      color="primary"
+      type="submit"
+      [disabled]="taskForm.invalid || !taskForm.dirty"
+    >
+      Submit
+    </button>
+    <button mat-button mat-dialog-close type="button">Close</button>
+  </mat-dialog-actions>
+</form>

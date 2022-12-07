@@ -1,0 +1,14 @@
+.filter_container {
+  padding: 0 1em;
+  box-sizing: border-box;
+
+  width: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 1em;
+}
+.full {
+  flex-grow: 1;
+}

@@ -1,0 +1,42 @@
+<div class="header_container">
+  <h2>Tasks</h2>
+  <div class="button_container">
+    <button mat-raised-button color="primary" (click)="openTaskDialog()">
+      Add task
+    </button>
+  </div>
+</div>
+<app-tasks-filter></app-tasks-filter>
+<div class="task_table" *ngIf="tasks$ | async as tasks">
+  <table
+    mat-table
+    [dataSource]="tasks"
+    class="mat-elevation-z8"
+    [trackBy]="trackTask"
+  >
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef>Description</th>
+      <td mat-cell *matCellDef="let element">
+        <a [routerLink]="['/tasks', element.id]">{{ element.description }}</a>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="assignee">
+      <th mat-header-cell *matHeaderCellDef>Assignee</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.assignee?.name || 'Unassigned' }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="completed">
+      <th mat-header-cell *matHeaderCellDef>Status</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.completed ? 'Completed' : 'Not completed' }}
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+  <p *ngIf="tasks.length === 0" class="empty_warning">There is no task</p>
+</div>

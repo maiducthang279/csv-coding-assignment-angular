@@ -1,0 +1,33 @@
+<mat-card>
+  <ng-container *ngIf="task$ | async as task; else loadingTask">
+    <mat-card-title>{{ task.description }}</mat-card-title>
+    <mat-card-content>
+      <p><b>Assignee: </b>{{ task.assignee?.name || 'Unassigned' }}</p>
+      <p>
+        <b>Status: </b>
+        <mat-slide-toggle
+          [checked]="task.completed"
+          (change)="toggleCompleteButton($event, task)"
+        >
+          {{ task.completed ? 'Completed' : 'Not completed' }}
+        </mat-slide-toggle>
+      </p>
+    </mat-card-content>
+    <mat-divider></mat-divider>
+    <mat-card-actions align="end">
+      <button mat-button (click)="openTaskDialog(task)">Edit</button>
+    </mat-card-actions>
+  </ng-container>
+  <ng-template #loadingTask>
+    <mat-card-title>Loading task...</mat-card-title>
+    <mat-card-content>
+      <div>
+        <p><b>Assignee:</b></p>
+        <p><b>Status:</b></p>
+      </div>
+    </mat-card-content>
+    <mat-card-footer>
+      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </mat-card-footer>
+  </ng-template>
+</mat-card>

@@ -1,0 +1,20 @@
+.task_table table {
+  width: 100%;
+}
+
+.header_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.button_container {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  gap: 0.5em;
+}
+
+.empty_warning {
+  text-align: center;
+}

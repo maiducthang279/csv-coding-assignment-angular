@@ -1,0 +1,26 @@
+<form class="filter_container" [formGroup]="filterForm">
+  <mat-form-field class="full" appearance="standard">
+    <mat-label>Description</mat-label>
+    <input matInput formControlName="description" />
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Assignee</mat-label>
+    <mat-select formControlName="assigneeId">
+      <mat-option value="All">All</mat-option>
+      <mat-option value="Unassigned">Unassigned</mat-option>
+      <ng-container *ngIf="users$ | async as users">
+        <mat-option *ngFor="let user of users" [value]="user.id">{{
+          user.name
+        }}</mat-option>
+      </ng-container>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="standard">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="completed">
+      <mat-option value="All">All</mat-option>
+      <mat-option [value]="true">Completed</mat-option>
+      <mat-option [value]="false">Not completed</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
