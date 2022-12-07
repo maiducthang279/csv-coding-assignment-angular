@@ -67,8 +67,6 @@ export class TasksFilterComponent implements OnInit {
   }
 
   private _filterByCompleted(task: Task, completed: boolean | 'All') {
-    console.log(task, completed);
-
     return completed === 'All' || completed === task.completed;
   }
 }
